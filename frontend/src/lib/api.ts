@@ -1,7 +1,7 @@
 import { buildQuery } from "./utils";
 
 export function getApiBaseUrl() {
-	const base = import.meta.env.VITE_API_BASE_URL;
+	const base = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 	return `${base}/api`;
 }
 
