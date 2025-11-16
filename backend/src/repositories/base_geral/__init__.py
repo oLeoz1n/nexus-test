@@ -1,0 +1,3 @@
+"""
+BaseGeral repository module.
+"""
