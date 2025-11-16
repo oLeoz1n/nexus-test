@@ -3,7 +3,8 @@ from typing import Literal
 from models.base_geral import BaseGeralModel
 from repositories.repositories import Repositories
 from schemas.responses.base_geral import BaseGeralResponse
-from schemas.responses.shared import PaginatedResponse, PaginatedResponseMeta
+from schemas.responses.shared import PaginatedResponse
+from utils.pagination import calculate_offset, generate_pagination_metadata
 
 
 class BaseGeralService:
@@ -26,15 +27,9 @@ class BaseGeralService:
         """
         Convert a list of BaseGeralModel instances to a paginated response dictionary.
         """
-        meta = PaginatedResponseMeta(
-            total=total,
-            next_page=page + 1 if (page + 1) * size < total else None,
-            previous_page=page - 1 if page > 1 else None,
-        )
-
         return PaginatedResponse[BaseGeralResponse](
             count=len(records),
-            meta=meta,
+            meta=generate_pagination_metadata(total, page, size),
             results=[self.to_response(record) for record in records],
         )
 
@@ -51,7 +46,7 @@ class BaseGeralService:
         """
         records, total = self._repository.filter(
             limit=size,
-            offset=(page - 1) * size,
+            offset=calculate_offset(page, size),
             order_by=sort_by,
             sort_order=sort_order,
             **kwargs,

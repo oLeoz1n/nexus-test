@@ -2,10 +2,9 @@ from typing import Literal
 
 from models.convocacao_exames_geral import ConvocacaoDeExamesGeralModel
 from repositories.repositories import Repositories
-from schemas.responses.convocacao_exames_geral import (
-    ConvocacaoDeExamesGeralResponse,
-)
-from schemas.responses.shared import PaginatedResponse, PaginatedResponseMeta
+from schemas.responses.convocacao_exames_geral import ConvocacaoDeExamesGeralResponse
+from schemas.responses.shared import PaginatedResponse
+from utils.pagination import calculate_offset, generate_pagination_metadata
 
 
 class ConvocacaoExamesGeralService:
@@ -34,15 +33,9 @@ class ConvocacaoExamesGeralService:
         """
         Convert a list of ConvocacaoDeExamesGeralModel instances to a paginated response dictionary.
         """
-        meta = PaginatedResponseMeta(
-            total=total,
-            next_page=page + 1 if (page + 1) * size < total else None,
-            previous_page=page - 1 if page > 1 else None,
-        )
-
         return PaginatedResponse[ConvocacaoDeExamesGeralResponse](
             count=len(records),
-            meta=meta,
+            meta=generate_pagination_metadata(total, page, size),
             results=[self.to_response(record) for record in records],
         )
 
@@ -59,7 +52,7 @@ class ConvocacaoExamesGeralService:
         """
         records, total = self._repository.filter(
             limit=size,
-            offset=(page - 1) * size,
+            offset=calculate_offset(page, size),
             order_by=sort_by,
             sort_order=sort_order,
             **kwargs,
