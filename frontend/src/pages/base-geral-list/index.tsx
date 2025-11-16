@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { BaseGeral } from "../../@types/baseGeral.ts";
 import { type Column, DataTable } from "../../components/DataTable.tsx";
 import { FilterBaseGeral } from "../../components/filters/FilterBaseGeral.tsx";
 import { Badge } from "../../components/ui/badge.tsx";
@@ -13,7 +14,6 @@ import {
 } from "../../components/ui/dialog.tsx";
 import { formatDate } from "../../lib/utils.ts";
 import { getStatusVariant, useBaseGeralList } from "./useBaseGeralList.ts";
-import type { BaseGeral } from "../../@types/baseGeral.ts";
 
 function getColumns(): Column<BaseGeral>[] {
 	return [
@@ -90,10 +90,7 @@ export default function BaseGeralListPage() {
 				</p>
 			</div>
 
-			<FilterBaseGeral
-				value={params}
-				onChange={next => setParams(p => ({ ...p, ...next, page: 1 }))}
-			/>
+			<FilterBaseGeral value={params} onChange={setParams} />
 
 			{error && (
 				<div className="rounded-lg border border-red-200 bg-red-50 dark:bg-red-950/20 dark:border-red-900 p-4">

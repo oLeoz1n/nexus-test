@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { ConvocacaoExamesGeral } from "../../@types/convocacaoExamesGeral.ts";
 import { type Column, DataTable } from "../../components/DataTable.tsx";
 import { FilterConvocacaoExamesGeral } from "../../components/filters/FilterConvocacaoExamesGeral.tsx";
 import { Badge } from "../../components/ui/badge.tsx";
@@ -8,7 +9,6 @@ import {
 	getSituacaoVariant,
 	useConvocacaoExamesGeralList,
 } from "./useConvocacaoExamesGeralList.ts";
-import type { ConvocacaoExamesGeral } from "../../@types/convocacaoExamesGeral.ts";
 
 function getColumns(): Column<ConvocacaoExamesGeral>[] {
 	return [
@@ -79,10 +79,7 @@ export default function ConvocacaoExamesGeralListPage() {
 				</p>
 			</div>
 
-			<FilterConvocacaoExamesGeral
-				value={params}
-				onChange={next => setParams(p => ({ ...p, ...next, page: 1 }))}
-			/>
+			<FilterConvocacaoExamesGeral value={params} onChange={setParams} />
 
 			{error && (
 				<div className="rounded-lg border border-red-200 bg-red-50 dark:bg-red-950/20 dark:border-red-900 p-4">

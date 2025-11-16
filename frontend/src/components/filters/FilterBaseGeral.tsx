@@ -1,10 +1,10 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import type { BaseGeralQuery } from "../../@types/baseGeral";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { Select } from "../ui/select";
-import type { BaseGeralQuery } from "../../@types/baseGeral";
 
 export type FilterBaseGeralProps = {
 	value: BaseGeralQuery;
@@ -12,13 +12,17 @@ export type FilterBaseGeralProps = {
 };
 
 export function FilterBaseGeral({ value, onChange }: FilterBaseGeralProps) {
-	const [local, setLocal] = useState<BaseGeralQuery>({
-		page: 1,
-		size: 10,
-		sort_by: "id",
-		sort_order: "asc",
-		...value,
-	});
+	function makeInitial(v: BaseGeralQuery): BaseGeralQuery {
+		return {
+			page: 1,
+			size: v.size ?? 10,
+			sort_by: v.sort_by ?? "id",
+			sort_order: v.sort_order ?? "asc",
+			...v,
+		};
+	}
+
+	const [local, setLocal] = useState<BaseGeralQuery>(makeInitial(value));
 	const [isExpanded, setIsExpanded] = useState(false);
 
 	function setField<K extends keyof BaseGeralQuery>(
@@ -33,13 +37,14 @@ export function FilterBaseGeral({ value, onChange }: FilterBaseGeralProps) {
 		onChange({ ...local, page: 1 });
 	}
 	function clear() {
-		const base = {
+		const cleared: BaseGeralQuery = {
 			page: 1,
 			size: local.size ?? 10,
-			sort_by: local.sort_by ?? "id",
-			sort_order: local.sort_order ?? "asc",
-		} as BaseGeralQuery;
-		onChange(base);
+			sort_by: "id",
+			sort_order: "asc",
+		};
+		setLocal(cleared);
+		onChange(cleared);
 	}
 
 	return (

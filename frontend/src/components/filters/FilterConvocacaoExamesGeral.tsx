@@ -1,10 +1,10 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import type { ConvocacaoExamesGeralQuery } from "../../@types/convocacaoExamesGeral";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { Select } from "../ui/select";
-import type { ConvocacaoExamesGeralQuery } from "../../@types/convocacaoExamesGeral";
 
 export type FilterConvocacaoExamesGeralProps = {
 	value: ConvocacaoExamesGeralQuery;
@@ -15,13 +15,21 @@ export function FilterConvocacaoExamesGeral({
 	value,
 	onChange,
 }: FilterConvocacaoExamesGeralProps) {
-	const [local, setLocal] = useState<ConvocacaoExamesGeralQuery>({
-		page: 1,
-		size: 10,
-		sort_by: "matricula",
-		sort_order: "asc",
-		...value,
-	});
+	function makeInitial(
+		v: ConvocacaoExamesGeralQuery
+	): ConvocacaoExamesGeralQuery {
+		return {
+			page: 1,
+			size: v.size ?? 10,
+			sort_by: v.sort_by ?? "matricula",
+			sort_order: v.sort_order ?? "asc",
+			...v,
+		};
+	}
+
+	const [local, setLocal] = useState<ConvocacaoExamesGeralQuery>(
+		makeInitial(value)
+	);
 	const [isExpanded, setIsExpanded] = useState(false);
 
 	function setField<K extends keyof ConvocacaoExamesGeralQuery>(
@@ -36,13 +44,14 @@ export function FilterConvocacaoExamesGeral({
 		onChange({ ...local, page: 1 });
 	}
 	function clear() {
-		const base = {
+		const cleared: ConvocacaoExamesGeralQuery = {
 			page: 1,
 			size: local.size ?? 10,
-			sort_by: local.sort_by ?? "matricula",
-			sort_order: local.sort_order ?? "asc",
-		} as ConvocacaoExamesGeralQuery;
-		onChange(base);
+			sort_by: "matricula",
+			sort_order: "asc",
+		};
+		setLocal(cleared);
+		onChange(cleared);
 	}
 
 	return (
