@@ -127,7 +127,9 @@ export function ConvocacaoExamesGeralDialog({
 							/>
 							<DetailField
 								label="Data Referência"
-								value={selectedRecord.data_referencia}
+								value={formatDate(
+									selectedRecord.data_referencia
+								)}
 							/>
 						</div>
 					)}

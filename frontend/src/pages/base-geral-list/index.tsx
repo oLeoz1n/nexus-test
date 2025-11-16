@@ -228,7 +228,9 @@ export default function BaseGeralListPage() {
 								/>
 								<DetailField
 									label="Data Conclusão Dia"
-									value={selectedRecord.data_conclusao_dia}
+									value={formatDate(
+										selectedRecord.data_conclusao_dia
+									)}
 								/>
 								<DetailField
 									label="Status SLA Agendamento"
@@ -238,7 +240,9 @@ export default function BaseGeralListPage() {
 								/>
 								<DetailField
 									label="Data Última Alteração"
-									value={selectedRecord.data_ultima_alteracao}
+									value={formatDate(
+										selectedRecord.data_ultima_alteracao
+									)}
 								/>
 								<DetailField
 									label="Tipo Solicitação Agendamento"

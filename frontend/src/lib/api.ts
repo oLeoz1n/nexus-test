@@ -1,11 +1,8 @@
 import { buildQuery } from "./utils";
 
-const DEFAULT_BASE = "http://localhost:8000";
-
 export function getApiBaseUrl() {
-	const env = (import.meta as any).env;
-	const base = env?.VITE_API_BASE_URL || DEFAULT_BASE;
-	return `${String(base).replace(/\/$/, "")}/api`;
+	const base = import.meta.env.VITE_API_BASE_URL;
+	return `${base}/api`;
 }
 
 export async function apiGet<T>(
