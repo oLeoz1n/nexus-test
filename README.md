@@ -4,7 +4,7 @@
 
 -   Python >= 3.11.9
 -   Pip >= 23.0.1
--   Node.js >= v18.20.8
+-   Node.js >= v20.19
 -   npm >= 10.8.2
 
 ### Rodar o backend:
