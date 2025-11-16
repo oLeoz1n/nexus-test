@@ -29,13 +29,13 @@ class BaseGeralListQueryParams(BaseModel):
         default=None,
         description="Data final da solicitação no formato AAAA-MM-DD para filtro de intervalo",
     )
-    solicitante: Optional[str] = Field(
+    solicitante__contains: Optional[str] = Field(
         default=None, description="Nome do solicitante para filtro específico"
     )
     status: Optional[str] = Field(
         default=None, description="Status do processo para filtro específico"
     )
-    nome_colaborador: Optional[str] = Field(
+    nome_colaborador__contains: Optional[str] = Field(
         default=None, description="Nome do colaborador para filtro específico"
     )
     tipo_exame: Optional[str] = Field(

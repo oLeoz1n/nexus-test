@@ -18,7 +18,7 @@ class ConvocacaoExamesGeralListQueryParams(BaseModel):
     cargo: Optional[str] = Field(
         default=None, description="Cargo para filtro específico"
     )
-    nome: Optional[str] = Field(
+    nome__contains: Optional[str] = Field(
         default=None, description="Nome do colaborador para filtro específico"
     )
     matricula: Optional[str] = Field(
