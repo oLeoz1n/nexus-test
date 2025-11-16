@@ -21,7 +21,7 @@ export type ConvocacaoExamesGeralQuery = {
 	sort_by?: "matricula" | "dt_admissao";
 	sort_order?: "asc" | "desc";
 	cargo?: string;
-	nome?: string;
+	nome__contains?: string;
 	matricula?: string;
 	dt_admissao__gte?: string;
 	dt_admissao__lte?: string;

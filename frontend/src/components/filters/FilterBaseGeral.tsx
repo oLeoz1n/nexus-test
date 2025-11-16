@@ -98,9 +98,12 @@ export function FilterBaseGeral({ value, onChange }: FilterBaseGeralProps) {
 									Solicitante
 								</label>
 								<Input
-									value={local.solicitante ?? ""}
+									value={local.solicitante__contains ?? ""}
 									onChange={e =>
-										setField("solicitante", e.target.value)
+										setField(
+											"solicitante__contains",
+											e.target.value
+										)
 									}
 									placeholder="Nome do solicitante"
 								/>
@@ -122,10 +125,12 @@ export function FilterBaseGeral({ value, onChange }: FilterBaseGeralProps) {
 									Nome do Colaborador
 								</label>
 								<Input
-									value={local.nome_colaborador ?? ""}
+									value={
+										local.nome_colaborador__contains ?? ""
+									}
 									onChange={e =>
 										setField(
-											"nome_colaborador",
+											"nome_colaborador__contains",
 											e.target.value
 										)
 									}

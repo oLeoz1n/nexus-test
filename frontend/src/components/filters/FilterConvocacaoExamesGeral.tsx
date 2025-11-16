@@ -83,9 +83,12 @@ export function FilterConvocacaoExamesGeral({
 									Nome
 								</label>
 								<Input
-									value={local.nome ?? ""}
+									value={local.nome__contains ?? ""}
 									onChange={e =>
-										setField("nome", e.target.value)
+										setField(
+											"nome__contains",
+											e.target.value
+										)
 									}
 									placeholder="Nome completo"
 								/>

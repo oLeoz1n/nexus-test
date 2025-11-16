@@ -27,8 +27,8 @@ export type BaseGeralQuery = {
 	etapa_atual?: string;
 	data_solicitacao__gte?: string;
 	data_solicitacao__lte?: string;
-	solicitante?: string;
+	solicitante__contains?: string;
 	status?: string;
-	nome_colaborador?: string;
+	nome_colaborador__contains?: string;
 	tipo_exame?: string;
 };
