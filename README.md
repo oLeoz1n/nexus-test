@@ -146,8 +146,8 @@ Accept: application/json
     -   `dt_admissao__gte` (date `AAAA-MM-DD`)
     -   `dt_admissao__lte` (date `AAAA-MM-DD`)
     -   `situacao` (str)
-    -   `dt_nascimento_gte` (date `AAAA-MM-DD`)
-    -   `dt_nascimento_lte` (date `AAAA-MM-DD`)
+    -   `dt_nascimento__gte` (date `AAAA-MM-DD`)
+    -   `dt_nascimento__lte` (date `AAAA-MM-DD`)
 -   Resposta (200): `PaginatedResponse<ConvocacaoDeExamesGeralResponse>`
 
 Exemplo:

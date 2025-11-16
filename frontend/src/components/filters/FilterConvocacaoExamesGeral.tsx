@@ -162,10 +162,10 @@ export function FilterConvocacaoExamesGeral({
 								</label>
 								<Input
 									type="date"
-									value={local.dt_nascimento_gte ?? ""}
+									value={local.dt_nascimento__gte ?? ""}
 									onChange={e =>
 										setField(
-											"dt_nascimento_gte",
+											"dt_nascimento__gte",
 											e.target.value
 										)
 									}
@@ -177,10 +177,10 @@ export function FilterConvocacaoExamesGeral({
 								</label>
 								<Input
 									type="date"
-									value={local.dt_nascimento_lte ?? ""}
+									value={local.dt_nascimento__lte ?? ""}
 									onChange={e =>
 										setField(
-											"dt_nascimento_lte",
+											"dt_nascimento__lte",
 											e.target.value
 										)
 									}

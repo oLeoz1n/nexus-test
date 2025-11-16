@@ -35,11 +35,11 @@ class ConvocacaoExamesGeralListQueryParams(BaseModel):
     situacao: Optional[str] = Field(
         default=None, description="Situação do colaborador para filtro específico"
     )
-    dt_nascimento_gte: Optional[date] = Field(
+    dt_nascimento__gte: Optional[date] = Field(
         default=None,
         description="Data de nascimento inicial no formato AAAA-MM-DD para filtro de intervalo",
     )
-    dt_nascimento_lte: Optional[date] = Field(
+    dt_nascimento__lte: Optional[date] = Field(
         default=None,
         description="Data de nascimento final no formato AAAA-MM-DD para filtro de intervalo",
     )

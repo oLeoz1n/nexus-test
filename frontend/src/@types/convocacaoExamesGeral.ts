@@ -26,6 +26,6 @@ export type ConvocacaoExamesGeralQuery = {
 	dt_admissao__gte?: string;
 	dt_admissao__lte?: string;
 	situacao?: string;
-	dt_nascimento_gte?: string;
-	dt_nascimento_lte?: string;
+	dt_nascimento__gte?: string;
+	dt_nascimento__lte?: string;
 };
