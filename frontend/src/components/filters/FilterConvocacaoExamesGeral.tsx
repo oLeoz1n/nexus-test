@@ -22,7 +22,7 @@ export function FilterConvocacaoExamesGeral({
 		sort_order: "asc",
 		...value,
 	});
-	const [isExpanded, setIsExpanded] = useState(true);
+	const [isExpanded, setIsExpanded] = useState(false);
 
 	function setField<K extends keyof ConvocacaoExamesGeralQuery>(
 		key: K,
